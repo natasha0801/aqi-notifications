@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 from twilio.rest import Client
-from pygame import mixer
-import requests, winsound, datetime, time
+import requests, datetime, time
 import numpy as np
 import matplotlib.pyplot as plt
 account_sid = 'placeholder' # replace with user's account sid
-auth_token = 'placeholder' # replace with user's account sid
+auth_token = 'placeholder' # replace with user's account token
 phone_number = 'whatsapp:+11234567890' # replace with user phone
 client = Client(account_sid, auth_token)
 state = input('State: ')
