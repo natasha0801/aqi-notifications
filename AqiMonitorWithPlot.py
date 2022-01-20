@@ -4,8 +4,9 @@ from pygame import mixer
 import requests, winsound, datetime, time
 import numpy as np
 import matplotlib.pyplot as plt
-account_sid = 'AC38f54cecc58e876c01216e5c454ff367'
-auth_token = 'e039f4c11845e0d5d8162e4b1e13d2d9'
+account_sid = 'placeholder' # replace with user's account sid
+auth_token = 'placeholder' # replace with user's account sid
+phone_number = 'whatsapp:+11234567890' # replace with user phone
 client = Client(account_sid, auth_token)
 state = input('State: ')
 city = input('City: ')
@@ -58,9 +59,6 @@ while True:
                 fig.canvas.flush_events()
             plt.pause(5)
             if aqi < threshold and badAir == True:
-                mixer.init()
-                mixer.music.load('and-his-name-is-john-cena-1.mp3')
-                mixer.music.play()
                 print('AQI is under ' + str(threshold) + '.')
                 string = 'Air Monitor: AQI is now in acceptable range (currently at ' + str(aqi) + ').'
                 badAir = False
@@ -68,14 +66,11 @@ while True:
                     message = client.messages.create( 
                                   from_='whatsapp:+14155238886',  
                                   body=string,      
-                                  to='whatsapp:+19168609619' 
+                                  to=phone_number
                             )
                 except:
                     print('ERROR: Failed to send WhatsApp message.')
             elif aqi >= threshold and badAir == False:
-                mixer.init()
-                mixer.music.load('ive-just-about-had-enough-of-you.mp3')
-                mixer.music.play()
                 print('AQI is over ' + str(threshold) + '.')
                 string = 'Air Monitor: AQI is now in unhealthy range (currently at ' + str(aqi) + ').'
                 badAir = True
@@ -83,7 +78,7 @@ while True:
                     message = client.messages.create( 
                                   from_='whatsapp:+14155238886',  
                                   body=string,      
-                                  to='whatsapp:+19168609619' 
+                                  to=phone_number
                             )
                     print('Notification sent.')
                 except:
